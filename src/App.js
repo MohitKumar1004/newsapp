@@ -1,38 +1,31 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import Navbar from './components/Navbar/Navbar'
 import News from './components/News/News'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import LoadingBar from 'react-top-loading-bar'
-export default class App extends Component {
-  pageSize=5
-  apiKey=process.env.REACT_APP_NEWS_API
-  state = {
-    progress:0,
-  }
-  setProgress = (progress) => {
-    this.setState({progress: progress});
-  }
-  render() {
-    return (
-      <BrowserRouter>
-        <Navbar/>
-        <LoadingBar
-          color="#f11946"
-          progress={this.state.progress} 
-          height={3}
-          // onLoaderFinished={()=>setProgress(0)}
-        />
-        <Routes basepath="/newsapp">
-          <Route exact path='/newsapp' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="home" category=""/>}/>
-          <Route exact path='/newsapp/general' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="general" category="general"/>}/>
-          <Route exact path='/newsapp/business' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="business" category="business"/>}/>
-          <Route exact path='/newsapp/entertainment' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="entertainment" category="entertainment"/>}/>
-          <Route exact path='/newsapp/health' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="health" category="health"/>}/>  
-          <Route exact path='/newsapp/science' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="science" category="science"/>}/>
-          <Route exact path='/newsapp/sports' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="sports" category="sports"/>}/>
-          <Route exact path='/newsapp/technology' element={<News setProgress={this.setProgress} apiKey={this.apiKey} pageSize={this.pageSize} key="technology" category="technology"/>}/>
-        </Routes>
-      </BrowserRouter>
-    )
-  }
+export default function App() {
+  const pageSize=5
+  const apiKey=process.env.REACT_APP_NEWS_API
+  const [progress,setProgress]=useState(0)
+  return (
+    <BrowserRouter>
+      <Navbar/>
+      <LoadingBar
+        color="#f11946"
+        progress={progress} 
+        height={3}
+        // onLoaderFinished={()=>setProgress(0)}
+      />
+      <Routes>
+        <Route exact path='/' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="home" category=""/>}/>
+        <Route exact path='/general' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="general" category="general"/>}/>
+        <Route exact path='/business' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="business" category="business"/>}/>
+        <Route exact path='/entertainment' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="entertainment" category="entertainment"/>}/>
+        <Route exact path='/health' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="health" category="health"/>}/>  
+        <Route exact path='/science' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="science" category="science"/>}/>
+        <Route exact path='/sports' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="sports" category="sports"/>}/>
+        <Route exact path='/technology' element={<News setProgress={setProgress} apiKey={apiKey} pageSize={pageSize} key="technology" category="technology"/>}/>
+      </Routes>
+    </BrowserRouter>
+  )
 }
