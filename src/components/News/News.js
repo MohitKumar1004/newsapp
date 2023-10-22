@@ -93,7 +93,7 @@ const News = (props) => {
                     {/* {loading && articles.map((element)=>{ */}
                         {articles.map((element)=>{
                             return (
-                            <div key={id++} className="col-md-4 col-sm-12">
+                            <div key={id++} className="col-md-4 vh-60 my-3 col-sm-12">
                                 <NewsItem title={element.title?element.title:""} description={element.description?element.description:""} imageUrl={element.urlToImage} newsUrl={element.url} author={element.author} date={element.publishedAt} source={element.source.name}/>
                             </div>
                         )
@@ -101,10 +101,6 @@ const News = (props) => {
                 </div>
             </div>
         </InfiniteScroll>
-        {/* <div className="container d-flex justify-content-between my-4">
-            <button disabled={page<=1} type="button" className="btn btn-dark" onClick={()=>handlePrevClick()}>&larr; Previous</button>
-            <button disabled={page+1 > Math.ceil(totalResults/props.pageSize)} type="button" className="btn btn-dark" onClick={()=>handleNextClick()}>Next &rarr;</button>
-        </div> */}
     </>
     )
 }

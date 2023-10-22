@@ -4,7 +4,7 @@ import News from './components/News/News'
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import LoadingBar from 'react-top-loading-bar'
 export default function App() {
-  const pageSize=5
+  const pageSize=6
   const apiKey=process.env.REACT_APP_NEWS_API
   const [progress,setProgress]=useState(0)
   return (
